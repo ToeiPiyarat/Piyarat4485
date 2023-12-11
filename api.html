@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>API</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+<style>
+  html{
+    background-color: rgb(255, 255, 255);
+  }
+  body, html h1, h2, iframe{
+    height: 100%;
+    font-family: "Inconsolata", sans-serif;
+  }
+  #dogImageContainer {
+      margin-top: 20px;
+  }
+  .box1, .box2{
+    padding: 20px;
+    text-align: center;
+    width: 50%;
+    margin: 60px auto;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px 5px, rgba(0, 0, 0, 0.04) 0px 10px 10px 5px;
+    background-color: #fff
+  }
+  .box{
+    padding: 20px;
+    text-align: center;
+    width: 23%;
+    margin: 60px auto;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px 5px, rgba(0, 0, 0, 0.04) 0px 10px 10px 5px;
+    background-color: #fff
+  }
+
+  .a2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: white; /* ตัวอย่างเท่านั้น */
+  }
+    </style>
+  </style> 
+</head>
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html" class="w3-bar-item w3-button">Index</a>
+      <a href="Java.html" class="w3-bar-item w3-button">Java</a>
+      <a href="api.html" class="w3-bar-item w3-button">API</a>
+    </div>
+  </div>
+</div>
+
+<div class="w3-content w3-padding w3-center box2" style="max-width:1564px">
+  <h2 style="color: rgb(255, 88, 88);">สุ่มอาชีพในฝัน </h2>
+<p id="occupationDisplay" ></p>
+<button onclick="generateRandomOccupation()"> กดสุ่มเลย!!</button>
+<script>
+  const occupations = [
+    'หมอ','นักบิน',' ตำรวจ','นักร้อง','คุณครู','สัตวแพทย์','นักกีฬามืออาชีพ', 'ภาโรง', 'นักดับเพลิง', 'ทหาร',
+  ];
+  function getRandomOccupation() {
+    const randomIndex = Math.floor(Math.random() * occupations.length);
+    return occupations[randomIndex];
+  }
+  function generateRandomOccupation() {
+    const randomOccupation = getRandomOccupation();
+    document.getElementById('occupationDisplay').textContent = `${randomOccupation}`;
+  }
+</script>
+</div>
+
+<div class="w3-content w3-padding w3-center box2" style="max-width:1000px">
+  <div class="a2">
+    <div class="w3-content" style="max-width:1564px">
+      <div class="api">
+        <h1></h1>
+        <h2 style="color: rgb(255, 88, 88);">สุ่มรูปแมวแสนน่ารัก </h2>
+        <p id="cat"></p>
+        <button onclick="cat()">กดสุ่มเลย!!!</button>
+  
+        <div id="catImageContainer" style="text-align: center;"></div>
+  
+        <script>
+          function cat() {
+            fetch("https://api.thecatapi.com/v1/images/search")
+              .then(function (response) {
+                return response.json()
+              })
+              .then(function (data) {
+                document.getElementById("cat").innerHTML = `<img src="${data[0].url}" alt="Random Cat Image" style="max-width: 300px; max-height: 300px">`;
+              })
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="w3-content w3-padding w3-center box1" style="max-width:1564px">
+  <h1 style="color: rgb(255, 88, 88);">กรุณากรอกข้อมูล</h1>
+<form
+method="POST" 
+action="https://script.google.com/macros/s/AKfycbxllKOlVhp2DFvAHSb3410HSJwAgA9AjzxnODSwwthhfUU586eBhVZ2fj5OGc1G0XoEPw/exec">
+
+  <label for="fname">ชื่อ : </label>
+  <input type="text" id="Name" name="Name" placeholder="name">
+
+  <label for="lname">อีเมล์ : </label>
+  <input type="text" id="lname" name="Email" placeholder="email">
+
+  <input type="submit" value="Submit">
+
+</form>
+</div>
+
+<div class="w3-content w3-padding w3-center box2">
+<h2 style="color: rgb(255, 88, 88);">แสดงข้อมูลที่บันทึกไว้</h2>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTOsjIHoVzdNk8udZARGoTm-5yLHChN2uaZm5ZBQkdGe2tsT-LX2q4BmeGoiGdqM3saBeGwOezRtr4u/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" style="width: 50%;"></iframe>
+</div>
+
+<div>
+  <script>
+   const cryptoAPIUrl = 'https://api.coingecko.com/api/v3/simple/price';
+  const cryptocurrencies = ['bitcoin', 'ethereum'];
+  const vsCurrencies = 'usd';
+
+const apiUrl = `${cryptoAPIUrl}?ids=${cryptocurrencies.join(',')}&vs_currencies=${vsCurrencies}`;
+
+fetch(apiUrl)
+  .then(response => response.json())
+  .then(data => {
+
+    cryptocurrencies.forEach(crypto => {
+      const price = data[crypto][vsCurrencies];
+      console.log(`Current ${crypto} Price (USD):`, price);
+    });
+  })
+  .catch(error => console.error('Error fetching cryptocurrency prices:', error));
+  </script>
+</div>
+
+<div class="box">
+  <h1 style="color: rgb(255, 88, 88);">เหรียญ API</h1>
+  <div id="lastUpdateTime"><p>Last Update Time: 9:06:01 PM</p></div>
+  <p>1 USDT can buy:</p>
+  <div id="prices" class="w3-content w3-padding" style="text-align: left;">
+              <li class="list-group list-group-numbered "><li class="list-group-item">1INCH: 2.677630522088353447125</li><li class="list-group-item">AAVE: 0.0102832245128785379745</li><li class="list-group-item">ABT: 8.4682049110922946828975</li><li class="list-group-item">ACH: 44.2598247477429633957375</li><li class="list-group-item">ACS: 376.300936900327350741606</li><li class="list-group-item">ADA: 2.244668911335578</li><li class="list-group-item">AED: 3.672748878</li><li class="list-group-item">BTC: 0.0000226997621632</li><li class="list-group-item">ETH: 0.0004418434592808</li></ul>
+          </div>
+
+  <script>
+      // Function to fetch cryptocurrency prices from the Coinbase API
+      async function fetchPrices() {
+          try {
+              const response = await fetch('https://api.coinbase.com/v2/exchange-rates?currency=USDT');
+              const data = await response.json();
+
+              // Display prices and last update time
+              displayPrices(data.data.rates);
+              displayLastUpdateTime();
+          } catch (error) {
+              handleFetchError(error);
+          }
+      }
+
+      // Function to display cryptocurrency prices
+      function displayPrices(rates) {
+          const currencies = ['1INCH', 'AAVE', 'ABT', 'ACH', 'ACS', 'ADA', 'AED', 'BTC', 'ETH'];
+
+          const pricesHtml = `
+              <p>1 USDT can buy:</p>
+              <ul class='list-group list-group-numbered'>${currencies.map(currency => `<li class='list-group-item'>${currency}: ${rates[currency] || 'N/A'}</li>`).join('')}</ul>
+          `;
+  
+          document.getElementById('prices').innerHTML = pricesHtml;
+      }
+  
+      // Function to handle fetch errors
+      function handleFetchError(error) {
+          console.error('Error fetching data:', error);
+          alert('Error fetching data. Please try again.');
+      }
+  
+      // Function to display the last update time
+      function displayLastUpdateTime() {
+          const updateTimeDiv = document.getElementById('lastUpdateTime');
+          const currentTime = new Date().toLocaleTimeString();
+  
+          updateTimeDiv.innerHTML = `<p>Last Update Time: ${currentTime}</p>`;
+      }
+  
+      // Initial fetch and display
+      fetchPrices();
+  
+      // Set interval to fetch and update prices every 30 seconds
+      setInterval(fetchPrices, 1000);
+  </script>
+</div>
+
+
+
+</div>
+  </div>
+</div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+<script>
+  //document.getElementById("demo").innerHTML = "Hello World";
+
+  function myFunction() {
+    fetch("https://catfact.ninja/fact")
+      .then(function(response){
+        return response.json()
+      })
+      .then(function(data){
+        let txt = "";
+          for (let x in data) {
+            txt += data[x] + " ";
+          document.getElementById("demo2").innerHTML = txt;
+          };
+      
+        return data;
+      })  
+}
+
+</script>
+
+</body>
+</html>

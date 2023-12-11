@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Java</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<style>
+  body, html ,h1, h2,h4{
+    height: 100%;
+    font-family: "Inconsolata", sans-serif;
+    background-color: rgb(255, 255, 255);
+  }
+  .box, .box1, .box2,.box3,.box4,.box5,.box6{
+    padding: 20px;
+    text-align: center;
+    width: 50%;
+    margin: 60px auto;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px 5px, rgba(0, 0, 0, 0.04) 0px 10px 10px 5px;
+    background-color: #fff
+  }
+  </style> 
+</head>
+
+
+
+<body>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html" class="w3-bar-item w3-button">Index</a>
+      <a href="Java.html" class="w3-bar-item w3-button">Java</a>
+      <a href="api.html" class="w3-bar-item w3-button">API</a>
+    </div>
+  </div>
+</div>
+
+<div class="w3-container w3-padding-32 w3-center" id="API">
+  </div>
+<!-- Page content -->
+<div class="w3-content w3-padding-64 w3-margin-top w3-center box" style="max-width:1564px">
+<h2 style="color: rgb(255, 88, 88);">เรียงตัวอักษรจาก A - Z </h2>
+<p id="demo" style="font-size: 20px;">Hi</p>
+</div>
+
+<div class="box1">
+<h2 style="color: rgb(255, 88, 88);">กดคลิ๊กเพื่อเปลี่ยน </h2>
+<p id="demo2" style="font-size: 20px;">Hi</p>
+<button onclick="myFunction()">กด</button>
+</div>
+
+<div class="box2">
+<h2 style="color: rgb(255, 88, 88);">คำนวนตัวเลข</h2>
+<input id="numb">
+<button type="button" onclick="myFunction2()">Submit</button>
+<p id="demo3" style="font-size: 20px;"></p>
+</div>
+
+<div class="box3">
+    <h2 style="color: rgb(255, 88, 88);">สุ่มลูกเต๋า</h2>
+    <button onclick="rollDice()">กดปุ่มเพื่อสุ่มลูกเต๋า</button>
+    <div id="result"></div>
+</div>
+
+<div class="box4">
+  <h2 style="color: rgb(255, 88, 88);">คำนวนวันต่อนาที</h2>
+  <input type="text" id="daysInput" fdprocessedid="1mel0p">
+  <h4><span id="show2"></span></h4>
+  <button onclick="dayToSeconds()" fdprocessedid="lky1nr">Submit</button>
+</div>
+
+<div class="w3-content w3-padding-100 w3-margin-top w3-center box5"> 
+  <h2 style="color: rgb(255, 88, 88);">คะแนนสอบในแต่ละวิชา</h2>
+<canvas id="myChart1" style="width:100%;max-width:800px; " ></canvas> 
+</div>
+
+<div class="w3-content w3-padding-100 w3-margin-top w3-center box6">
+  <h2 style="color: rgb(255, 88, 88);">ประชากรโลกต่อภูมิภาค (ต่อล้าน)</h2>
+<canvas id="line-chart" style="width:100%;max-width:800px; " ></canvas>
+</div>
+
+<!-- End page content -->
+</div>
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+
+<script>
+  //document.getElementById("demo").innerHTML = "Hello World";
+
+  function printAlphabets() {
+  // สร้างตัวแปรเพื่อเก็บตัวอักษร A-Z
+  const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  // ใช้ forEach เพื่อวนลูปผ่านทุกตัวอักษร
+  alphabets.split('').forEach((alphabet, index) => {
+    // ใช้ setTimeout เพื่อกำหนดระยะเวลาการแสดงผล
+    setTimeout(() => {
+      document.getElementById("demo").innerHTML = alphabet;
+      console.log(alphabet);
+    }, index * 1000); // 1000 milliseconds = 1 วินาที
+  });
+}
+printAlphabets();
+
+  function myFunction() {
+    document.getElementById("demo2").innerHTML = "Hello World";
+}
+
+  function myFunction2() {
+  // Get the value of the input field with id="numb"
+  let x = document.getElementById("numb").value;
+  // If x is Not a Number or less than one or greater than 10
+  let text;
+  if (isNaN(x) || x < 1 || x > 10) {
+    text = "Input not valid";
+  } else {
+    text = "Input OK";
+  }
+  document.getElementById("demo3").innerHTML = text;
+}
+function rollDice() {
+          // สุ่มตัวเลขจำนวนเต็ม 1 ถึง 6
+          var randomNumber = Math.floor(Math.random() * 6) + 1;
+      
+          // แสดงผลลัพธ์
+          document.getElementById('result').innerText = 'แต้มที่ออก: ' + randomNumber;
+        }
+function calculateCircleCircumference(radius) {
+  return 2 * Math.PI * radius;
+}
+function dayToSeconds() {
+    let inputDays = document.getElementById("daysInput").value;
+    if (!isNaN(inputDays)) {
+        let seconds = inputDays * 86400;
+        document.getElementById("show2").innerText = `Number of days : ${inputDays} day, ${seconds} minute`;
+    } else {
+        alert("Please enter a valid number of days.");
+    }
+}
+</script>
+<script>
+    const xValues = ["ภาษาไทย", "คณิตศาสตร์", "สังคม", "พละ", "อังกฤษ"];
+    const yValues = [35, 49, 44, 50, 29];
+    const barColors = ["red", "green","blue","orange","brown"];
+    
+    new Chart("myChart1", {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        title: {
+          display: true
+        }
+      }
+    });
+
+    fetch('j1.json')
+.then(response => response.json())
+.then(data => {
+  // Use the data to create the chart
+  new Chart(document.getElementById("line-chart"), data.chartConfig);
+})
+.catch(error => console.error('Error fetching chart data:', error));
+
+    </script>
+
+</body>
+</html>
